@@ -13,4 +13,7 @@ In each folder we have two types of programs; one that considers the age range o
 
 ## Contacts
 
+* Vinicius Albani: 
+
+* Jennifer Loría:
 
