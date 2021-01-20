@@ -1,4 +1,4 @@
-# Vaccination_Scenarios
+# Vaccination Scenarios
 
 Program in Matlab associated with the generation of vaccination scenarios against COVID-19.
 
