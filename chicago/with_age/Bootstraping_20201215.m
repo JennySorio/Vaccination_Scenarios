@@ -7,7 +7,6 @@ for jj = 1:NSamples
 trajectories(:,jj) = poissrnd(NewCases(2:end));
 end
 
-%% Estimating Bootstrap Parameters
 
 PARAMS1Boot = zeros(NSamples,9);
 BETABoot = zeros(NSamples,length(BETA));
