@@ -12,6 +12,14 @@ FECHAS DE LOS DATOS.
 
 In each folder we have two types of programs; one that considers the age range of the population and another in which it is not considered.
 
+* ObjFun_InitialPopBetaWithoutAge:
+* ObjFun_beta4:
+*
+*
+*
+*
+*
+
 ## How to use this repository
 
 
