@@ -1,4 +1,5 @@
 # Vaccination_Scenarios
+
 Program in Matlab associated with the generation of vaccination scenarios against COVID-19.
 
 
@@ -15,5 +16,5 @@ In each folder we have two types of programs; one that considers the age range o
 
 * Vinicius Albani: 
 
-* Jennifer Loría:
+* Jennifer Loría: jennyls@impa.br
 
