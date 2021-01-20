@@ -12,8 +12,8 @@ In each folder we have two types of programs; one that considers the age range o
 FECHAS DE LOS DATOS.
 
 * Bootstrapping_20201027:
-*
-*
+* Bootstrapping_20201104:
+* Bootstrapping_20201204:
 *
 *
 *
