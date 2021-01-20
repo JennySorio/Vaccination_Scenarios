@@ -7,6 +7,7 @@ for jj = 1:NSamples
 trajectories(:,jj) = poissrnd(NewCases(2:end));
 end
 
+%%% Estimating Bootstrap Parameters
 
 PARAMS1Boot = zeros(NSamples,9);
 BETABoot = zeros(NSamples,length(BETA));
@@ -25,8 +26,8 @@ NewDeathsBoot = zeros(length(t_actual),NSamples);
 NewHospBoot = zeros(length(t_actual),NSamples);
 
 for ll = 1:1%NSamples
-% %%% Estimating the transmission constant parameters (M,H,I), the initial
-% %%% infecve population (I_M0) and the transmission matrix:
+%%% Estimating the transmission constant parameters (M,H,I), the initial
+%%% infecve population (I_M0) and the transmission matrix:
 params2=paramsOld;
 yinitB = yinitOld;
 t_actual2 = t_actual(1:day);
