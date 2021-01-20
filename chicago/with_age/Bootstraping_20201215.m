@@ -9,8 +9,6 @@ end
 
 %% Estimating Bootstrap Parameters
 
-%%% Estimating Bootstrap Parameters
-
 PARAMS1Boot = zeros(NSamples,9);
 BETABoot = zeros(NSamples,length(BETA));
 yinit2B = zeros(NSamples,7*NumberOfAgeClasses);
