@@ -8,8 +8,7 @@ This program was carried out as part of the research project on epidemiological 
 
 There are two folders: Chicago and New York City. The programs present in each one are very similar. The main differences are related to the data format of each one.
 
-In each folder we have two types of programs; one that considers the age range of the population and another in which it is not considered. Alem, each folder also has the data used (https://www.chicago.gov/city/en/sites/covid-19/home.html and https://www1.nyc.gov/site/doh/covid/covid-19-data.page). 
-FECHAS DE LOS DATOS.
+In each folder we have two types of programs; one that considers the age range of the population and another in which it is not considered. Alem, each folder also has the data used for the period 01-Mar-2020 to 28-Nov-2020(https://www.chicago.gov/city/en/sites/covid-19/home.html and https://www1.nyc.gov/site/doh/covid/covid-19-data.page).
 
 ## How to use this repository
 
