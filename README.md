@@ -2,7 +2,9 @@
 
 Program in Matlab associated with the generation of vaccination scenarios against COVID-19.
 
-This program was carried out as part of the research project on epidemiological models of COVID-19 and the impact of vaccination in this pandemic. Its members are: Eduardo Massad, Jorge P. Zubelli, Vinicius Albani and Jennifer Loria.
+This program was carried out as part of the research project on epidemiological models of COVID-19 and the impact of vaccination in this pandemic. 
+
+The members of project are: Eduardo Massad, Jorge P. Zubelli, Vinicius Albani and Jennifer Loria.
 
 ## Repository contents
 
