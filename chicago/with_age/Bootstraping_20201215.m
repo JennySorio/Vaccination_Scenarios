@@ -94,14 +94,6 @@ yb2(jj+1,:) = yinit2;
 disp(num2str(unknowns))
 end
 
-% AUX = zeros(size(t_actual2));
-% for jj=1:day-1
-% % AUX(jj) = basic_reproduction_rate_beta2(Proportion,params2,...
-% %                                                Beta(jj+1),t_actual(jj+1))';
-% AUX(jj) = basic_reproduction_rate_beta2(ones(size(Proportion)),params2,...
-%                                                Beta(jj+1),t_actual(jj+1))';
-% end
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Estimating the transmission constant parameters (M,H,I), the initial
 %%% infecve population (I_M0) and the transmission matrix:
@@ -168,19 +160,13 @@ beta2 = @(t)interp1(t_actual2,Beta(jj:jj+1),t);
 yinit2 = y2B(end,:);
 yb2(jj+1,:) = yinit2;
 disp(num2str(unknowns))
-% R0(jj) = basic_reproduction_rate_beta(Proportion,params,BETA(jj+1),t_actual(jj+1));
 end
 end
 BETABoot(ll,:) = Beta;
-% for jj=day:length(t_actual)-1
-% % AUX(jj) = basic_reproduction_rate_beta2(Proportion,params2,...
-% %                                                 Beta(jj+1),t_actual(jj+1));
-% AUX(jj) = basic_reproduction_rate_beta2(ones(size(Proportion)),params2,...
-%                                                 Beta(jj+1),t_actual(jj+1));
-% end
-% R0Boot(ll,:) = AUX;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%% Evaluating Curves of New Infections, Hospitalizations etc.
+
+%%% Total Number of Cases for each day
 NewCasesBoot(:,ll) = ...
              p*sigma*sum(yb2(:,NumberOfAgeClasses+1:2*NumberOfAgeClasses),2);
 
