@@ -25,7 +25,7 @@ To fulfill the second objective, we use the files that start with the name **Vac
 
 The functions that are in the program whose name begins with **seir**, are the functions that generate as output some parameters defined in the SEIR-like model proposed in the article "The Impact of Covid-19 Vaccination Delay: A Case Study with Chicago and NYC Data". 
 
-The functions that start with **ObjFun** are those related to the generation and calibration of the vector beta. For this, are estimated the mildly infective population  and b.. 
+The functions that start with **ObjFun** are those related to the generation and calibration of the vector beta. For this, are estimated the mildly infective population  and b.
 
 The function **basic_reproduction_rate_beta** generates the time-dependent effective reproduction number.
 
