@@ -6,17 +6,10 @@ This program was carried out as part of the research project on epidemiological 
 
 ## Repository contents
 
-There are two folders: Chicago and NYC (New York City). The programs present in each one are very similar. The main differences are related to the data format of each one.
+There are two folders: Chicago and New York City. The programs present in each one are very similar. The main differences are related to the data format of each one.
 
-In each folder we have two types of programs; one that considers the age range of the population and another in which it is not considered. Alem, each folder also has the data used (fuente bibliografica). 
+In each folder we have two types of programs; one that considers the age range of the population and another in which it is not considered. Alem, each folder also has the data used (https://www.chicago.gov/city/en/sites/covid-19/home.html and https://www1.nyc.gov/site/doh/covid/covid-19-data.page). 
 FECHAS DE LOS DATOS.
-
-* Bootstrapping_20201027:
-* Bootstrapping_20201104:
-* Bootstrapping_20201204:
-*
-*
-*
 
 ## How to use this repository
 
