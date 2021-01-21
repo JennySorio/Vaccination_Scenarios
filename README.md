@@ -23,7 +23,7 @@ To meet the first objective, we must use the files that start with the name **Bo
 
 To fulfill the second objective, we use the files that start with the name **Vaccination** and **EvaluatingPaths**.
 
-The functions that are in the program whose name begins with **seir**, are the functions that generate as output some parameters defined in the SEIR-like model proposed in the article "The Impact of Covid-19 Vaccination Delay: A Case Study with Chicago and NYC Data". Taking among its inputs one vector with the population susceptible (S), vaccinated (V), exposed (E), asymptomatic and infective (IA), mildly infective (IM), severely infective (IS), critically infective (IC), recovered (R), and deceased (D).
+The functions that are in the program whose name begins with **seir**, are the functions that generate as output some parameters defined in the SEIR-like model proposed in the article "The Impact of Covid-19 Vaccination Delay: A Case Study with Chicago and NYC Data". 
 
 The functions that start with **ObjFun** are those related to the generation of the vector beta. for this, are estimated  mildly infective population initial and b ; after o vector bet  is calibrated. 
 
