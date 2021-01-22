@@ -39,8 +39,8 @@ parfor ll = 1:NSamples
 params2=paramsOld;
 p = params2.p;
 
-% %%% Estimating the transmission constant parameters (M,H,I), the initial
-% %%% infecve population (I_M0) and the transmission matrix:
+%%%% Estimating the transmission constant parameters (M,H,I), the initial
+%%%% infecve population (I_M0) and the transmission matrix:
 yinitB = yinitOld;
 LB = [1/N,1E-3];
 UB = [50/N,10];
@@ -59,7 +59,7 @@ yinitB(1:NumberOfAgeClasses) = Proportion-I_M*PropInfections;
 params2.a = unknowns(2);
 
 PARAMS1Boot(ll,:) = unknowns;
-%
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%% Estimating a time-dependent transmission parameter (beta) from day 1
 %%%% until 19:
