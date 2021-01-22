@@ -96,13 +96,6 @@ yb2(jj+1,:) = yinit2;
 disp(num2str(unknowns))
 end
 
-% AUX = zeros(size(t_actual2));
-% for jj=1:day-1
-% % AUX(jj) = basic_reproduction_rate_beta2(Proportion,params2,...
-% %                                                Beta(jj+1),t_actual(jj+1))';
-% AUX(jj) = basic_reproduction_rate_beta2(ones(size(Proportion)),params2,...
-%                                                Beta(jj+1),t_actual(jj+1))';
-% end
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Estimating the transmission constant parameters (M,H,I), the initial
@@ -174,13 +167,7 @@ disp(num2str(unknowns))
 end
 end
 BETABoot(ll,:) = Beta;
-% for jj=day:length(t_actual)-1
-% % AUX(jj) = basic_reproduction_rate_beta2(Proportion,params2,...
-% %                                                 Beta(jj+1),t_actual(jj+1));
-% AUX(jj) = basic_reproduction_rate_beta2(ones(size(Proportion)),params2,...
-%                                                 Beta(jj+1),t_actual(jj+1));
-% end
-% R0Boot(ll,:) = AUX;
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%% Evaluating Curves of New Infections, Hospitalizations etc.
 NewCasesBoot(:,ll) = ...

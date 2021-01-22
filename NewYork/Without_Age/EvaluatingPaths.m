@@ -13,7 +13,6 @@ parfor ll = 1:NSamples
 params2 = paramsOld;
 p = params2.p;
 Hosp = Hosp95(ll)*ones(length(t_actual),1);
-% Hosp(1:end-4) = min(1,Hospitalization./trajectories(1:size(trajectories,1)-4,ll));
 Hosp = min(20,Hosp/GetWorse_M);
 params2.factorWorse = @(t)interp1(t_actual,Hosp,t);
 

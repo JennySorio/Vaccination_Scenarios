@@ -93,38 +93,6 @@ value1 = mean(Beta(end-l-9:end-l));
 value2 = mean(Beta(200-9:200));
 
 for jj = aux
-% if jj > length(t_actual)
-% hosp = GetWorse_M*factor(jj)*yinit2(4*Number+1)*N;
-% if hosp >= 300
-% BETAB(jj+1:end) = value2*ones;
-% beta2 = @(t)interp1(t_actual2,BETAB,t);
-% 
-% % params2.a = PARAMS2Boot(7,1,ll);
-% % bb = PARAMS2Boot(7,2:end,ll);
-% % beta_M = 0.5*diag(PropInfections);
-% % for ii = 1:NumberOfAgeClasses-1
-% % beta_M(ii,ii+1:end) = PropInfections(ii)*bb(1:end-ii+1);
-% % end
-% % beta_M = beta_M+beta_M';
-% % params2.beta_M = params2.a.*beta_M;
-% % params2.beta_H = params2.a.*beta_M;
-% % params2.beta_I = params2.a.*beta_M;
-% elseif hosp < 100
-% BETAB(jj+1:end) = value1*ones;
-% beta2 = @(t)interp1(t_actual2,BETAB,t);
-% 
-% % params2.a = PARAMS2Boot(ss,1,ll);
-% % bb = PARAMS2Boot(ss,2:end,ll);
-% % beta_M = 0.5*diag(PropInfections);
-% % for ii = 1:NumberOfAgeClasses-1
-% % beta_M(ii,ii+1:end) = PropInfections(ii)*bb(1:end-ii+1);
-% % end
-% % beta_M = beta_M+beta_M';
-% % params2.beta_M = params2.a.*beta_M;
-% % params2.beta_H = params2.a.*beta_M;
-% % params2.beta_I = params2.a.*beta_M;
-% end
-% end
 t_actualB = t_actual2(jj:jj+1);
 [~,y2] = ode45(@(t,y)seir_Vaccination(t,y,params2,beta2),...
                                                  t_actualB,yinit2,options);

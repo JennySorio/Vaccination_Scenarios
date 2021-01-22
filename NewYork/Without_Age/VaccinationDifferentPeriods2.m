@@ -36,23 +36,6 @@ aux2 = round(0*NSamples);
 aux = aux(aux2+1:end-aux2,:);
 CI95Vac = [min(aux);max(aux)]*N;
 
-% %%% New Cases:
-% aux = sort(NewCasesBoot');
-% aux2 = round(0*NSamples);
-% aux = aux(aux2+1:end-aux2,:);
-% CI95NewCases = [min(aux);max(aux)]*N;
-% 
-% %%% New Deaths:
-% aux = sort(NewDeathsBoot');
-% aux2 = round(0.05*NSamples);
-% aux = aux(aux2+1:end-aux2,:);
-% CI95NewDeaths = [min(aux);max(aux)]*N;
-% 
-% %%% New Hospitalizations:
-% aux = sort(NewHospBoot');
-% aux2 = round(0.05*NSamples);
-% aux = aux(aux2+1:end-aux2,:);
-% CI95NewHosp = [min(aux);max(aux)]*N;
 
 %%% New Cases:
 aux = sort(NewCasesBootVac');
@@ -72,95 +55,6 @@ aux2 = round(0.05*NSamples);
 aux = aux(aux2+1:end-aux2,:);
 CI95NewHospVac = [min(aux);max(aux)]*N;
 
-% H = [100 100 600 300];
-% %%% plotting Results:
-% figure
-% hold on
-% % grid on
-% box on
-% title('Daily Infections - New York City')
-% % h1=area(t_span,CI95NewCases(2,:),'linestyle',':','FaceColor',[255,160,122]/255,'FaceAlpha',1);%[51,236,255]/255);
-% % h2=area(t_span,CI95NewCases(1,:),'linestyle',':','FaceColor',[1,1,1]);
-% % h1.Annotation.LegendInformation.IconDisplayStyle = 'off';
-% % h2.Annotation.LegendInformation.IconDisplayStyle = 'off';
-% h1=area(t_span,CI95NewCasesVac(2,:),'linestyle',':','FaceColor',[51,236,255]/255,'FaceAlpha',0.3);
-% h2=area(t_span,CI95NewCasesVac(1,:),'linestyle',':','FaceColor',[1,1,1]);
-% h1.Annotation.LegendInformation.IconDisplayStyle = 'off';
-% h2.Annotation.LegendInformation.IconDisplayStyle = 'off';
-% % plot(t_span,median(NewCasesBoot*N,2),'r','LineWidth',2)
-% % plot(t_span(2:end),data1(:,1),'r','LineWidth',2)
-% plot(t_span,median(NewCasesBootVac*N,2),'b','LineWidth',2)
-% legend('Without Vaccination','With Vaccination','Location','NorthEast')
-% ylabel('Number of Individuals')
-% xlim([t_span(tt(zz)-10),t_span(end)])
-% % h1=plot([t_span(tt(zz)),t_span(tt(zz))],[0,1.3*max(median(NewCasesBoot(tt(zz)-10:end,:)*N,2))],'k','LineWidth',1);
-% % h1.Annotation.LegendInformation.IconDisplayStyle = 'off';
-% % ylim([0,1.3*max(median(NewCasesBoot(tt(zz)-10:end,:)*N,2))])
-% xtickformat('dd-MMM')
-% set(gcf,'Position',H)
-% set(gca,'FontSize',16,'FontName','Arial')
-% hold off
-% saveas(gcf,['InfectionsNYCVac',num2str(zz),'.fig']);
-% print('-dpng',['InfectionsNYCVac2',num2str(zz)]);
-% 
-% figure
-% hold on
-% % grid on
-% box on
-% title('Daily Deaths - New York City')
-% h1=area(t_span,CI95NewDeaths(2,:),'linestyle',':','FaceColor',[255,160,122]/255);
-% h2=area(t_span,CI95NewDeaths(1,:),'linestyle',':','FaceColor',[1,1,1]);
-% h1.Annotation.LegendInformation.IconDisplayStyle = 'off';
-% h2.Annotation.LegendInformation.IconDisplayStyle = 'off';
-% h1=area(t_span,CI95NewDeathsVac(2,:),'linestyle',':','FaceColor',[51,236,255]/255);
-% h2=area(t_span,CI95NewDeathsVac(1,:),'linestyle',':','FaceColor',[1,1,1]);
-% h1.Annotation.LegendInformation.IconDisplayStyle = 'off';
-% h2.Annotation.LegendInformation.IconDisplayStyle = 'off';
-% plot(t_span,median(NewDeathsBoot*N,2),'r','LineWidth',2)
-% % plot(t_span(2:end),data1(:,2),'r','LineWidth',2)
-% plot(t_span,median(NewDeathsBootVac*N,2),'b','LineWidth',2)
-% legend('Without Vaccination','With Vaccination','Location','NorthEast')
-% ylabel('Number of Individuals')
-% xlim([t_span(tt(zz)-10),t_span(end)])
-% h1=plot([t_span(tt(zz)),t_span(tt(zz))],[0,1.3*max(median(NewDeathsBoot(tt(zz)-10:end,:)*N,2))],'k','LineWidth',1);
-% h1.Annotation.LegendInformation.IconDisplayStyle = 'off';
-% ylim([0,1.3*max(median(NewDeathsBoot(tt(zz)-10:end,:)*N,2))])
-% xtickformat('dd-MMM')
-% set(gcf,'Position',H)
-% set(gca,'FontSize',16,'FontName','Arial')
-% hold off
-% saveas(gcf,['DeathsNYCVac2',num2str(zz),'.fig']);
-% print('-dpng',['DeathsNYCVac2',num2str(zz)]);
-% 
-% %%%%%%%%%
-% figure
-% hold on
-% % grid on
-% box on
-% title('Daily Hospitalizations - New York City')
-% h1=area(t_span,CI95NewHosp(2,:),'linestyle',':','FaceColor',[255,160,122]/255);
-% h2=area(t_span,CI95NewHosp(1,:),'linestyle',':','FaceColor',[1,1,1]);
-% h1.Annotation.LegendInformation.IconDisplayStyle = 'off';
-% h2.Annotation.LegendInformation.IconDisplayStyle = 'off';
-% h1=area(t_span,CI95NewHospVac(2,:),'linestyle',':','FaceColor',[51,236,255]/255);
-% h2=area(t_span,CI95NewHospVac(1,:),'linestyle',':','FaceColor',[1,1,1]);
-% h1.Annotation.LegendInformation.IconDisplayStyle = 'off';
-% h2.Annotation.LegendInformation.IconDisplayStyle = 'off';
-% plot(t_span,median(NewHospBoot*N,2),'r','LineWidth',2)
-% % plot(t_span(2:end),data1(:,3),'r','LineWidth',2)
-% plot(t_span,median(NewHospBootVac*N,2),'b','LineWidth',2)
-% legend('Without Vaccination','With Vaccination','Location','NorthEast')
-% ylabel('Number of Individuals')
-% xlim([t_span(tt(zz)-10),t_span(end)])
-% h1=plot([t_span(tt(zz)),t_span(tt(zz))],[0,1.3*max(median(NewHospBoot(tt(zz)-10:end,:)*N,2))],'k','LineWidth',1);
-% h1.Annotation.LegendInformation.IconDisplayStyle = 'off';
-% ylim([0,1.3*max(median(NewHospBoot(tt(zz)-10:end,:)*N,2))])
-% xtickformat('dd-MMM')
-% set(gcf,'Position',H)
-% set(gca,'FontSize',16,'FontName','Arial')
-% hold off
-% saveas(gcf,['HospNYCVac2',num2str(zz),'.fig']);
-% print('-dpng',['HospNYCVac2',num2str(zz)]);
 
 
 % disp(['Total Vaccinated: ',num2str(round([sum(median(N*Vaccinated(tt(zz):end,:),2)),sum(CI95Vac(1,tt(zz):end)),sum(CI95Vac(2,tt(zz):end))]))])

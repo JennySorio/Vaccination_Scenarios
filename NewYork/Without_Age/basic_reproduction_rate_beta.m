@@ -27,20 +27,12 @@ p = params.p;
 
 f = zeros(5*Number);
 for jj = 1:Number
-% f(jj,Number+1:end) = [beta_M(jj,:)*S(jj),beta_H(jj,:)*S(jj),beta_I(jj,:)*S(jj)];
 for ii =1:Number
 f(jj,(ii-1)*5+1:ii*5) = [0,beta_A(jj,ii)*S(jj),beta_M(jj,ii)*S(jj),beta_H(jj,ii)*S(jj),beta_I(jj,ii)*S(jj)];
 end
 end
 v = zeros(5*Number);
-% v(1:Number,1:Number) = sigma*eye(Number);
-% v(Number+1:2*Number,Number+1:2*Number) = diag(nu_M + mu_M + gamma_M);
-% v(2*Number+1:3*Number,2*Number+1:3*Number) = diag(nu_H + mu_H + gamma_H);
-% v(3*Number+1:4*Number,3*Number+1:4*Number) = diag(nu_I + mu_I);
-% 
-% v(Number+1:2*Number,1:Number) = -sigma*eye(Number);
-% v(2*Number+1:3*Number,Number+1:2*Number) = -diag(gamma_M);
-% v(3*Number+1:4*Number,2*Number+1:3*Number) = -diag(gamma_H);
+
 for jj = 1:Number
 aux = diag([sigma,nu_A,nu_M(jj) + mu_M(jj) + gamma_M(jj),nu_H(jj) + mu_H(jj)...
                                        + gamma_H(jj),nu_I(jj) + mu_I(jj)]);

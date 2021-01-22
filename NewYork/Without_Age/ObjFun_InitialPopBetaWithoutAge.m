@@ -19,9 +19,6 @@ sigma = params.sigma;
 NewInfections = p*sigma*sum(y(:,Number+1:2*Number),2)*N;
 NewInfections = interp1(t,NewInfections,t_actual(2:end)');
 
-% Gaussian Misfit or Likelihood
-% f = (NewInfections-data(:,1));
-% f = [f;(unknowns-priors)'];
 
 % % log-Poisson Misfit of Likelihood
 Stirling = 0.5*log(2*pi*data(:,1)) + data(:,1).*log(data(:,1)) - data(:,1);

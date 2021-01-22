@@ -1,45 +1,5 @@
 function  yprime = seir_Vaccination(t,y,params,beta)
 
-%    dS/dt = -S*(beta_M*I_M + beta_H*I_H + beta_I*I_I)
-%    dE/dt = S*(beta_M*I_M + beta_H*I_H + beta_I*I_I) - sigma*E 
-%    dI_M/dt = sigma*E -(nu_M + mu_M + gamma_M)*I_M
-%    dI_H/dt = gamma_M*I_M -(nu_H + mu_H + gamma_H)*I_H
-%    dI_I/dt = gamma_H*I_H -(nu_I + mu_I)*I_I
-%    dR/dt = nu_M*I_M + nu_H*I_H + nu_H*I_H
-%    dD/dt = mu_M*I_M + mu_H*I_H + mu_H*I_H
-%
-%   yprime = [dS/dt  dE/dt dI_M/dt dI_H/dt dI_I/dt dR/dt dD/dt]'
-%
-%   input:
-%       t  current time
-%       y vector of current soln values
-% y(1) = S, y(2) = E, y(3) = I_M, y(4) = I_H, y(5) = I_I, y(6) = R, 
-% y(7) = D
-%
-%     parameters in "params" 
-%    beta_M, beta_H, beta_I, N, sigma, gamma_M, gamma_H, nu_M, nu_H, nu_I, 
-%    mu_M, mu_H, mu_I, R_zero_array (table of values) 
-%
-%   output: (col vector)
-%    yprime(1) = dS/dt
-%    yprime(2) = dE/dt
-%    yprime(3) = dI_M/dt
-%    yprime(4) = dI_H/dt
-%    yprime(5) = dI_I/dt
-%    yprime(6) = dR/dt
-%    yprime(7) = dD/dt
-
-%    beta_M, beta_H, beta_I, N, sigma, gamma_M, gamma_H, nu_M, nu_H, nu_I, 
-%    mu_M, mu_H, mu_I,
-%    R_zero_array (table of values)
-
-%    R_zero_array = params.R_zero_array;
-%     min_t = R_zero_array(1,1);
-%       n_table = length( R_zero_array(:,1) );
-%     max_t = R_zero_array(n_table,1);
-%      t_val = max( min_t, min( t, max_t) );
-
-%    R_zero = interp1( R_zero_array(:,1), R_zero_array(:,2), t_val);
 
 a = params.a.*params.b;
 b = params.a.*params.c;
@@ -68,8 +28,6 @@ beta_A = q*beta_M;
 Vaccine = params.VaccinationRate;
 nu = Vaccine(t);
 
-
-%    beta_M = R_zero*gamma; 
 S = y(1:Number);
 % V = y(Number+1:2*Number);
 E = y(2*Number+1:3*Number);
