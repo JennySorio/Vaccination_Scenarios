@@ -32,8 +32,6 @@ I_A = y(2*Number+1:3*Number);
 I_M = y(3*Number+1:4*Number);
 I_H = y(4*Number+1:5*Number);
 I_I = y(5*Number+1:6*Number);
-%      R = y(6);
-%      D = y(7);
 
  yprime = zeros(8,1);
 for jj = 1:Number
