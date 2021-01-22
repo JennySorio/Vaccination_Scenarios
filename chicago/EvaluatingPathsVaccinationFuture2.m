@@ -44,7 +44,6 @@ yb2(1,:) = yinitB;
 auxA = zeros(1,length(Beta2)-1);
 for jj =1:day-1
 t_actualB = t_actual2(jj:jj+1);
-% beta2 = @(t)interp1(t_actualB,Beta2(jj:jj+1),t);
 [~,y2B] = ode45(@(t,y)seir_Vaccination(t,y,params2,beta2),...
                                                  t_actualB,yinit2,options);
 yinit2 = y2B(end,:);
@@ -64,7 +63,6 @@ params2.a = PARAMS2Boot(ss,ll);
 
 for jj = aux
 t_actualB = t_actual2(jj:jj+1);
-% beta2 = @(t)interp1(t_actualB,Beta2(jj:jj+1),t);
 [~,y2] = ode45(@(t,y)seir_Vaccination(t,y,params2,beta2),...
                                                  t_actualB,yinit2,options);
 yinit2 = y2(end,:);
