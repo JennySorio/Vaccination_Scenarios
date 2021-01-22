@@ -486,53 +486,6 @@ set(gca,'FontSize',16,'FontName','Arial')
 hold off
 saveas(gcf,'HospChicagoAS.fig');
 print('-dpng','HospChicagoAS');
-% 
-% 
-% %%% BETA
-% 
-% figure
-% hold on
-% box on
-% title('Chicago')
-% % area(t_span,max([BETA';CI95BETA(2,:)]),'linestyle',':','FaceColor',[51,236,255]/255)
-% % area(t_span,min([BETA';CI95BETA(1,:)]),'linestyle',':','FaceColor',[1,1,1])
-% area(t_span,CI95BETA(2,:),'linestyle',':','FaceColor',[51,236,255]/255)
-% area(t_span,CI95BETA(1,:),'linestyle',':','FaceColor',[1,1,1])
-% plot(t_span,BETA,'b','LineWidth',2)
-% plot([t_span(day),t_span(day)],[0,15],'--k','LineWidth',2)
-% ylabel('Transmission Coeficcient')
-% xlim([t_span(1),t_span(end)])
-% ylim([0,15])
-% xtickformat('dd-MMM')
-% set(gca,'FontSize',16,'FontName','Arial')
-% hold off
-% % saveas(gcf,'betaNYC.fig');
-% % print('-dpng','betaNYC');
-
-% BETA2 = BETA;
-% for jj=4:size(data,1)-3
-%     BETA2(jj) = mean(BETA2(jj-3:jj+3));
-% end
-% 
-% figure
-% hold on
-% box on
-% title('New York City')
-% % area(t_span,max([BETA2';CI95BETAt(2,:)]),'linestyle',':','FaceColor',[51,236,255]/255)
-% % area(t_span,min([BETA2';CI95BETAt(1,:)]),'linestyle',':','FaceColor',[1,1,1])
-% area(t_span,CI95BETAt(2,:),'linestyle',':','FaceColor',[51,236,255]/255)
-% area(t_span,CI95BETAt(1,:),'linestyle',':','FaceColor',[1,1,1])
-% plot(t_span,BETA2,'b','LineWidth',2)
-% plot([t_span(day),t_span(day)],[0,15],'--k','LineWidth',2)
-% ylabel('Transmission Coeficcient')
-% xlim([t_span(1),t_span(end)])
-% ylim([0,15])
-% xtickformat('dd-MMM')
-% set(gca,'FontSize',16,'FontName','Arial')
-% hold off
-% % saveas(gcf,'betaNYCSmooth.fig');
-% % print('-dpng','betaNYCSmooth');
-
 
 %%% R0
 
@@ -541,8 +494,7 @@ hold on
 grid on
 box on
 title('Chicago')
-% area(t_span(2:end),max([R0;CI95R0(2,:)]),'linestyle',':','FaceColor',[51,236,255]/255)
-% area(t_span(2:end),min([R0;CI95R0(1,:)]),'linestyle',':','FaceColor',[1,1,1])
+
 area(t_span(2:end),CI95R0(2,:),'linestyle',':','FaceColor',[51,236,255]/255)
 area(t_span(2:end),CI95R0(1,:),'linestyle',':','FaceColor',[1,1,1])
 plot(t_span(2:end),R0,'b','LineWidth',2)
@@ -564,8 +516,7 @@ hold on
 grid on
 box on
 title('Chicago')
-% area(t_span(2:end),max([R0;CI95R0(2,:)]),'linestyle',':','FaceColor',[51,236,255]/255)
-% area(t_span(2:end),min([R0;CI95R0(1,:)]),'linestyle',':','FaceColor',[1,1,1])
+
 h1=area(t_span(2:end),CI95R0t(2,:),'linestyle',':','FaceColor',[255,160,122]/255);%[51,236,255]/255);
 h2=area(t_span(2:end),CI95R0t(1,:),'linestyle',':','FaceColor',[1,1,1]);
 h1.Annotation.LegendInformation.IconDisplayStyle = 'off';
@@ -582,122 +533,5 @@ hold off
 saveas(gcf,'R0Chicago_smooth.fig');
 print('-dpng','R0Chicago_smooth');
 
-% R02 = R0;
-% for jj=4:size(data,1)-3
-% R02(jj) = mean(R02(jj-3:jj+3));
-% end
-% figure
-% hold on
-% grid on
-% box on
-% title('New York City')
-% % area(t_span(2:end),max([R02;CI95R0t(2,:)]),'linestyle',':','FaceColor',[51,236,255]/255)
-% % area(t_span(2:end),min([R02;CI95R0t(1,:)]),'linestyle',':','FaceColor',[1,1,1])
-% area(t_span(2:end),CI95R0t(2,:),'linestyle',':','FaceColor',[51,236,255]/255)
-% area(t_span(2:end),CI95R0t(1,:),'linestyle',':','FaceColor',[1,1,1])
-% plot(t_span(2:end),R02,'b','LineWidth',2)
-% % plot([t_span(day),t_span(day)],[0,8],'--k','LineWidth',2)
-% plot(t_span(2:end),ones(size(t_span(2:end))),'k')
-% ylabel('Basic Reproduction Rate')
-% xlim([t_span(1),t_span(end)])
-% ylim([0,10])
-% xtickformat('dd-MMM')
-% set(gca,'FontSize',16,'FontName','Arial')
-% hold off
-% % saveas(gcf,'R0NYCSmooth.fig');
-% % print('-dpng','R0NYCSmooth');
-% 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% 
-% PARAMS1STAT = zeros(4,size(PARAMS1Boot,2));
-% PARAMS1STAT(1,:) = PARAMS1;
-% for jj=1:size(PARAMS1Boot,2)
-% aux = sort(PARAMS1Boot(:,jj));
-% PARAMS1STAT(2,jj) = median(aux);
-% aux2 = round(0.05*NSamples);
-% aux = aux(aux2+1:end-aux2,:);
-% PARAMS1STAT(3:end,jj) = [min(aux);max(aux)];
-% end
-% PARAMS1STAT(:,1) = PARAMS1STAT(:,1)*params.N;
-% 
-% PARAMS2 = PARAMS2(1:end-1,:);
-% PARAMS2STAT = zeros(3,4*size(PARAMS2,1));
-% PARAMS2STAT(:,1:4:end) = PARAMS2';
-% for jj=1:size(PARAMS2Boot,1)
-% aux = zeros(3,NSamples);
-% for ll = 1:NSamples
-% aux(:,ll) = PARAMS2Boot(jj,:,ll)';
-% end
-% aux = sort(aux);
-% PARAMS2STAT(:,jj-1)*4+2) = [median(aux(1,:));median(aux(2,:));median(aux(3,:))];
-% aux2 = round(0.05*NSamples);
-% aux = aux(:,aux2+1:end-aux2);
-% PARAMS2STAT(:,(jj-1)*4+3:jj*4) = [min(aux(1,:)),max(aux(1,:));min(aux(2,:)),max(aux(2,:));min(aux(3,:)),max(aux(3,:))];
-% end
-% 
-% betaCI90 = zeros(2,1+size(PARAMS2,1));
-% betaCI90(1,:) = [PARAMS1STAT(3,2),PARAMS2STAT(1,3:4:end)];
-% betaCI90(2,:) = [PARAMS1STAT(4,2),PARAMS2STAT(1,4:4:end)];
-% beta = [PARAMS1STAT(1,2),PARAMS2STAT(1,1:4:end)];
-% betaMedian = [PARAMS1STAT(2,2),PARAMS2STAT(1,2:4:end)];
-% 
-% figure
-% hold on
-% grid on
-% box on
-% title('Chicago')
-% h1=area(betaCI90(2,:),'linestyle',':','FaceColor',[255,160,122]/255);%[51,236,255]/255);
-% h2=area(betaCI90(1,:),'linestyle',':','FaceColor',[1,1,1]);
-% h1.Annotation.LegendInformation.IconDisplayStyle = 'off';
-% h2.Annotation.LegendInformation.IconDisplayStyle = 'off';
-% plot(beta,'b','LineWidth',2)
-% plot(betaMedian,'r','LineWidth',2)
-% legend('Original','Corrected Data')
-% ylabel('Basic Reproduction Rate')
-% set(gca,'FontSize',16,'FontName','Arial')
-% hold off
-% 
-% aCI90 = zeros(2,1+size(PARAMS2,1));
-% aCI90(1,:) = [PARAMS1STAT(3,3),PARAMS2STAT(2,3:4:end)];
-% aCI90(2,:) = [PARAMS1STAT(4,3),PARAMS2STAT(2,4:4:end)];
-% a = [PARAMS1STAT(1,3),PARAMS2STAT(2,1:4:end)];
-% aMedian = [PARAMS1STAT(2,3),PARAMS2STAT(2,2:4:end)];
-% 
-% figure
-% hold on
-% grid on
-% box on
-% title('Chicago')
-% h1=area(aCI90(2,:),'linestyle',':','FaceColor',[255,160,122]/255);%[51,236,255]/255);
-% h2=area(aCI90(1,:),'linestyle',':','FaceColor',[1,1,1]);
-% h1.Annotation.LegendInformation.IconDisplayStyle = 'off';
-% h2.Annotation.LegendInformation.IconDisplayStyle = 'off';
-% plot(a,'b','LineWidth',2)
-% plot(aMedian,'r','LineWidth',2)
-% legend('Original','Corrected Data')
-% ylabel('Basic Reproduction Rate')
-% set(gca,'FontSize',16,'FontName','Arial')
-% hold off
-% 
-% bCI90 = zeros(2,1+size(PARAMS2,1));
-% bCI90(1,:) = [PARAMS1STAT(3,4),PARAMS2STAT(3,3:4:end)];
-% bCI90(2,:) = [PARAMS1STAT(4,4),PARAMS2STAT(3,4:4:end)];
-% b = [PARAMS1STAT(1,4),PARAMS2STAT(3,1:4:end)];
-% bMedian = [PARAMS1STAT(2,4),PARAMS2STAT(3,2:4:end)];
-% 
-% figure
-% hold on
-% grid on
-% box on
-% title('Chicago')
-% h1=area(bCI90(2,:),'linestyle',':','FaceColor',[255,160,122]/255);%[51,236,255]/255);
-% h2=area(bCI90(1,:),'linestyle',':','FaceColor',[1,1,1]);
-% h1.Annotation.LegendInformation.IconDisplayStyle = 'off';
-% h2.Annotation.LegendInformation.IconDisplayStyle = 'off';
-% plot(b,'b','LineWidth',2)
-% plot(bMedian,'r','LineWidth',2)
-% legend('Original','Corrected Data')
-% ylabel('Basic Reproduction Rate')
-% set(gcf,'Position',H)
-% set(gca,'FontSize',16,'FontName','Arial')
-% hold off
+
+
