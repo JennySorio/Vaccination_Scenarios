@@ -40,13 +40,8 @@ t_actual = 0:size(data,1);
 %%%% Smoothing the data - averaging every 7e consecutive days:
 
 %%%% Daily Infections, Hospitalizations and Deaths
-% data(1:10,1) = max(ones,data(1:10,1));
+
 data1 = data;
-% for jj=7:size(data,1)
-% for ii = 1:size(data,2) 
-% data1(jj,ii) = mean(data(jj-6:jj,ii));
-% end
-% end
 for jj=4:size(data,1)-3
 for ii = 1:size(data,2) 
 data1(jj,ii) = mean(data(jj-3:jj+3,ii));
