@@ -8,7 +8,7 @@ The project members are Eduardo Massad, Jorge P. Zubelli, Vinicius Albani and Je
 
 ## Repository contents
 
-There are two folders: Chicago and New York City. The programs present in each one are very similar. The main differences are related to the data of each one.
+There are two folders: Chicago and New York City.  The programs present in each one are very similar. The main differences are related to the data of each one.
 
 In each folder we have two types of programs; one that considers the age range of the population and another in which it is not considered. Each folder also has the data used from 01-Mar-2020 to 28-Nov-2020 (https://www.chicago.gov/city/en/sites/covid-19/home.html and https://www1.nyc.gov/site/doh/covid/covid-19-data.page).
 
@@ -23,7 +23,7 @@ To meet the first objective, we must use the files that start with the name **Bo
 
 To fulfill the second objective, we use the files that start with the name **Vaccination** and **EvaluatingPaths**.
 
-The functions that are in the program whose name begins with **seir**, are the functions that generate as output some parameters defined in the SEIR-like model proposed in the article "The Impact of Covid-19 Vaccination Delay: A Case Study with Chicago and NYC Data". 
+The functions that are in the program whose name begins with **seir**, are the functions that generate as output some parameters defined in the SEIR-like model proposed in the article "The Impact of Covid-19 Vaccination Delay: A Modelling Study for Chicago and NYC Data". 
 
 The functions that start with **ObjFun** are those related to the generation and calibration of the vector beta. For this, are estimated the mildly infective population  and b.
 
