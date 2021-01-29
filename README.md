@@ -12,6 +12,8 @@ There are two folders: Chicago and New York. In the New York folder there are tw
 
 Each folder also has the data used from 01-Mar-2020 to 28-Nov-2020 (https://www.chicago.gov/city/en/sites/covid-19/home.html and https://www1.nyc.gov/site/doh/covid/covid-19-data.page). The programs present in each one are very similar. The main differences are related to the data of each one.
 
+To create part of the code of the new model proposed in this project, we took as an initial guide some known codes of the SEIR model (https://cs.uwaterloo.ca/~paforsyt/SEIR.html).
+
 ## How to use this repository
 
 The objectives of this program are:
