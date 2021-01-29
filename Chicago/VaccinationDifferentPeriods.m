@@ -1,78 +1,84 @@
 % clear all; clc; close all; format long e;
 % load dataChicago_20201204b;
 % 
-% ndays = 183;%203;
-% l=3;
-% z=0;
-% t_actual2 = 0:length(t_actual)-l+ndays;
-% t_span = datetime(2020,3,01) + caldays(0:length(t_actual2)-1);
-% 
-% 
-% Hosp = ones(length(t_actual2),1);
-% Hosp(3:length(t_actual)) = min(1,data1(2:end,3)./data1(1:end-1,1));
-% Hosp(length(t_actual)-l:end) = mean(Hosp(length(t_actual)-l-z:length(t_actual)-l))*ones;
-% Hosp = min(20,Hosp/GetWorse_M);
-% Death = ones(size(t_actual2));
-% Death(3:length(t_actual)) = min(1,data1(2:end,2)./data1(1:end-1,3))/Death_I;
-% Death(length(t_actual)-l:end) = mean(Death(length(t_actual)-l-z:length(t_actual)-l))*ones;
-% params.factorDeath = @(t)interp1(t_actual2,Death,t);
-% params.factorWorse = @(t)interp1(t_actual2,Hosp,t);
-% 
-% 
+ ndays = 183;%203;
+ l=3;
+ z=0;
+ t_actual2 = 0:length(t_actual)-l+ndays;
+ t_span = datetime(2020,3,01) + caldays(0:length(t_actual2)-1);
+ 
+ 
+ Hosp = ones(length(t_actual2),1);
+ Hosp(3:length(t_actual)) = min(1,data1(2:end,3)./data1(1:end-1,1));
+ Hosp(length(t_actual)-l:end) = mean(Hosp(length(t_actual)-l-z:length(t_actual)-l))*ones;
+ Hosp = min(20,Hosp/GetWorse_M);
+ Death = ones(size(t_actual2));
+ Death(3:length(t_actual)) = min(1,data1(2:end,2)./data1(1:end-1,3))/Death_I;
+ Death(length(t_actual)-l:end) = mean(Death(length(t_actual)-l-z:length(t_actual)-l))*ones;
+ params.factorDeath = @(t)interp1(t_actual2,Death,t);
+ params.factorWorse = @(t)interp1(t_actual2,Hosp,t);
+ 
+ 
 % EvaluatingPathsFuture;
-% 
-% tt = [215,246,276,307,338,366,397];
-% ZZ = zeros(length(tt),9);
-% for zz = 1:length(tt)
-% Vaccination = zeros(size(t_actual2));
-% Vaccination(t_actual2>=tt(zz)) = 0.95*0.01*ones;
-% params.VaccinationRate = @(t)interp1(t_actual2,Vaccination,t);
+ 
+tt = [215,246,276,307,338,366,397];
+ ZZ = zeros(length(tt),9);
+ for zz = 1:length(tt)
+ Vaccination = zeros(size(t_actual2));
+ Vaccination(t_actual2>=tt(zz)) = 0.95*0.01*ones;
+ params.VaccinationRate = @(t)interp1(t_actual2,Vaccination,t);
+
 % EvaluatingPathsVaccinationFuture2;
-% 
+
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% aux = sort(Vaccinated');
-% aux2 = round(0*NSamples);
-% aux = aux(aux2+1:end-aux2,:);
-% CI95Vac = [min(aux);max(aux)]*N;
-% 
+aux = sort(Vaccinated');
+aux2 = round(0*NSamples);
+aux = aux(aux2+1:end-aux2,:);
+CI95Vac = [min(aux);max(aux)]*N;
+ 
 % %%% New Cases:
-% aux = sort(NewCasesBoot');
-% aux2 = round(0*NSamples);
-% aux = aux(aux2+1:end-aux2,:);
-% CI95NewCases = [min(aux);max(aux)]*N;
+
+aux = sort(NewCasesBoot');
+aux2 = round(0*NSamples);
+aux = aux(aux2+1:end-aux2,:);
+CI95NewCases = [min(aux);max(aux)]*N;
 % 
 % %%% New Deaths:
-% aux = sort(NewDeathsBoot');
-% aux2 = round(0.05*NSamples);
-% aux = aux(aux2+1:end-aux2,:);
-% CI95NewDeaths = [min(aux);max(aux)]*N;
-% 
+
+aux = sort(NewDeathsBoot');
+aux2 = round(0.05*NSamples);
+aux = aux(aux2+1:end-aux2,:);
+CI95NewDeaths = [min(aux);max(aux)]*N;
+ 
 % %%% New Hospitalizations:
-% aux = sort(NewHospBoot');
-% aux2 = round(0.05*NSamples);
-% aux = aux(aux2+1:end-aux2,:);
-% CI95NewHosp = [min(aux);max(aux)]*N;
-% 
+aux = sort(NewHospBoot');
+aux2 = round(0.05*NSamples);
+aux = aux(aux2+1:end-aux2,:);
+CI95NewHosp = [min(aux);max(aux)]*N;
+ 
 % %%% New Cases:
-% aux = sort(NewCasesBootVac');
-% aux2 = round(0*NSamples);
-% aux = aux(aux2+1:end-aux2,:);
-% CI95NewCasesVac = [min(aux);max(aux)]*N;
-% 
+aux = sort(NewCasesBootVac');
+aux2 = round(0*NSamples);
+aux = aux(aux2+1:end-aux2,:);
+CI95NewCasesVac = [min(aux);max(aux)]*N;
+ 
 % %%% New Deaths:
-% aux = sort(NewDeathsBootVac');
-% aux2 = round(0.05*NSamples);
-% aux = aux(aux2+1:end-aux2,:);
-% CI95NewDeathsVac = [min(aux);max(aux)]*N;
-% 
-% %%% New Hospitalizations:
-% aux = sort(NewHospBootVac');
-% aux2 = round(0.05*NSamples);
-% aux = aux(aux2+1:end-aux2,:);
-% CI95NewHospVac = [min(aux);max(aux)]*N;
-% 
-% H = [100 100 600 300];
+
+aux = sort(NewDeathsBootVac');
+aux2 = round(0.05*NSamples);
+aux = aux(aux2+1:end-aux2,:);
+CI95NewDeathsVac = [min(aux);max(aux)]*N;
+ 
+% %%% New Hospitalizations: 
+aux = sort(NewHospBootVac');
+aux2 = round(0.05*NSamples);
+aux = aux(aux2+1:end-aux2,:);
+CI95NewHospVac = [min(aux);max(aux)]*N;
+ 
+H = [100 100 600 300];
+
 % %%% plotting Results:
+
 % figure
 % hold on
 % % grid on
