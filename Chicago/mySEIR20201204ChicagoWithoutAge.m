@@ -6,16 +6,16 @@ clear all; clc; close all; format long e;
 %%%% data misfit) is log-Poisson. The model parameters are estimated from
 %%%% the daily records of infections and deaths.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Bootstrapping=0;  % If you want to bootstrap to generate confidence 
+                  % intervals set Bootstrapping=1;
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%% Setup for the ODE solver and the least-square function
 tol = 1.e-6;  % ode solver tolerance
-% set 'Stats','on' to get more info
-% options = odeset('AbsTol', tol,'RelTol',tol,'MaxOrder',5,'Stats','on');
 
-% note: set Refine switch to avoid interpolation
 options = odeset('AbsTol', tol,'RelTol',tol,'MaxOrder',5,'Stats',...
                                                          'off','Refine',1);
-options2 = [];%optimset('MaxFunEvals',10000,'MaxIter',7000,'TolFun',...
-                                                       1e-30,'TolX',1e-30);
+options2 = optimset('MaxFunEvals',10000,'MaxIter',7000,'TolFun',...
+                                                     1e-30,'TolX',1e-30);
 options3 = [];
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%% Experimental Data
@@ -173,13 +173,9 @@ n = size(data1,1)-size(dataB,1);
 Hosp = ones(length(t_actual),1);
 Hosp(3:end) = min(1,data1(2:end,3)./data1(1:end-1,1));
 Hosp = min(20,Hosp/GetWorse_M);
-% ICU = ones(length(t_actual),1);
-% ICU(n+2:end) = min(1,dataB(:,15)./data1(n:end-1,3));
-% ICU = min(20,ICU/GetWorse_H);
 Death = ones(size(t_actual));
 Death(3:end) = min(1,data1(2:end,2)./data1(1:end-1,3))/Death_I;
 params.factorWorse = @(t)interp1(t_actual,Hosp,t);
-% params.factorICU = @(t)interp1(t_actual,ICU,t);
 params.factorDeath = @(t)interp1(t_actual,Death,t);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -197,8 +193,8 @@ params.beta_M = beta_M;      % In Mild conditions
 params.beta_H = beta_M;  % Hospitalized individuals
 params.beta_I = beta_M; % In ICU
 
-params.b = 0.1;%0.5;
-params.c = 0.01;%0.05;
+params.b = 0.1;
+params.c = 0.01;
 
 paramsOld = params;
 yinitOld = yinit;
@@ -345,9 +341,12 @@ TotalDeaths = sum(Deaths)'*N;
 disp('  Infections   Hosp.    Deaths  ')
 disp(num2str(round([TotalInfections,TotalHosp,TotalDeaths])))
 
+if Bootstrapping == 1
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%% Bootstraping data to generate confidence intervals
+%%%% After bootsrapping, results are plot
 Bootstrapping_20201204;
-save dataChicago_20201204b;
+save dataChicago; saving your results
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% plotting Results:
 %%% CI Evaluation
@@ -417,11 +416,11 @@ hold on
 % grid on
 box on
 title('Daily Infections - Chicago')
-h1=area(t_span,CI95NewCases(2,:),'linestyle',':','FaceColor',[255,160,122]/255);%[51,236,255]/255);
+h1=area(t_span,CI95NewCases(2,:),'linestyle',':','FaceColor',[255,160,122]/255);
 h2=area(t_span,CI95NewCases(1,:),'linestyle',':','FaceColor',[1,1,1]);
 h1.Annotation.LegendInformation.IconDisplayStyle = 'off';
 h2.Annotation.LegendInformation.IconDisplayStyle = 'off';
-bar(t_span(2:end),data1(:,1),'FaceColor',[0 0.75 0.75],'EdgeColor','none')%[255,119,51]/255,'EdgeColor','none')
+bar(t_span(2:end),data1(:,1),'FaceColor',[0 0.75 0.75],'EdgeColor','none')
 plot(t_span,NewCases,'r','LineWidth',2)
 legend('Reported','Estimated','Location','NorthWest')
 ylabel('Number of Individuals')
@@ -449,7 +448,6 @@ h2.Annotation.LegendInformation.IconDisplayStyle = 'off';
 legend('Reported','Estimated')
 ylabel('Number of Individuals')
 xlim([t_span(1),t_span(end-3)])
-% ylim([0,1.3*max(data(:,3))])
 xtickformat('dd-MMM')
 set(gcf,'Position',H)
 set(gca,'FontSize',16,'FontName','Arial')
@@ -459,6 +457,7 @@ print('-dpng','DeathsChicagoAS');
 
 
 %%%%%%%%%
+
 figure
 hold on
 % grid on
@@ -470,11 +469,9 @@ bar(t_span(2:end),data1(:,3),'FaceColor',[0 0.75 0.75],'EdgeColor','none')
 h1.Annotation.LegendInformation.IconDisplayStyle = 'off';
 h2.Annotation.LegendInformation.IconDisplayStyle = 'off';
 plot(t_span,N*NewHosp,'r','LineWidth',2)
-% plot([t_span(day),t_span(day)],[0,1.3*max(data(:,2))],'--k','LineWidth',2)
 legend('Reported','Estimated')
 ylabel('Number of Individuals')
 xlim([t_span(1),t_span(end-3)])
-% ylim([0,1.3*max(data(:,2))])
 xtickformat('dd-MMM')
 set(gcf,'Position',H)
 set(gca,'FontSize',16,'FontName','Arial')
@@ -489,12 +486,10 @@ hold on
 grid on
 box on
 title('Chicago')
-
 area(t_span(2:end),CI95R0(2,:),'linestyle',':','FaceColor',[51,236,255]/255)
 area(t_span(2:end),CI95R0(1,:),'linestyle',':','FaceColor',[1,1,1])
 plot(t_span(2:end),R0,'b','LineWidth',2)
 plot(t_span(2:end),median(R0Boot),'r','LineWidth',2)
-% plot([t_span(day),t_span(day)],[0,8],'--k','LineWidth',2)
 plot(t_span(2:end),ones(size(t_span(2:end))),'k')
 ylabel('Basic Reproduction Rate')
 xlim([t_span(1),t_span(end-3)])
@@ -511,8 +506,7 @@ hold on
 grid on
 box on
 title('Chicago')
-
-h1=area(t_span(2:end),CI95R0t(2,:),'linestyle',':','FaceColor',[255,160,122]/255);%[51,236,255]/255);
+h1=area(t_span(2:end),CI95R0t(2,:),'linestyle',':','FaceColor',[255,160,122]/255);
 h2=area(t_span(2:end),CI95R0t(1,:),'linestyle',':','FaceColor',[1,1,1]);
 h1.Annotation.LegendInformation.IconDisplayStyle = 'off';
 h2.Annotation.LegendInformation.IconDisplayStyle = 'off';
@@ -527,6 +521,4 @@ set(gca,'FontSize',16,'FontName','Arial')
 hold off
 saveas(gcf,'R0Chicago_smooth.fig');
 print('-dpng','R0Chicago_smooth');
-
-
-
+end
