@@ -1,7 +1,7 @@
 clear all; clc; close all; format long e;
 load dataNYC_20201211;
 
-ndays = 183;%203;
+ndays = 183;
 l=3;
 z=0;
 t_actual2 = 0:length(t_actual)-l+ndays;
@@ -18,8 +18,6 @@ Death(length(t_actual)-l:end) = mean(Death(length(t_actual)-l-z:length(t_actual)
 params.factorDeath = @(t)interp1(t_actual2,Death,t);
 params.factorWorse = @(t)interp1(t_actual2,Hosp,t);
 
-
-% EvaluatingPathsFuture;
 
 tt = [215,246,276,307,338,366,397];
 ZZ = zeros(length(tt),12);
@@ -57,7 +55,7 @@ CI95NewHospVac = [min(aux);max(aux)]*N;
 
 
 
-% disp(['Total Vaccinated: ',num2str(round([sum(median(N*Vaccinated(tt(zz):end,:),2)),sum(CI95Vac(1,tt(zz):end)),sum(CI95Vac(2,tt(zz):end))]))])
+disp(['Total Vaccinated: ',num2str(round([sum(median(N*Vaccinated(tt(zz):end,:),2)),sum(CI95Vac(1,tt(zz):end)),sum(CI95Vac(2,tt(zz):end))]))])
 disp(num2str(round([sum(median(N*NewCasesBootVac(tt(1):end,:),2)),sum(CI95NewCasesVac(1,tt(1):end)),sum(CI95NewCasesVac(2,tt(1):end)),...
     sum(median(N*NewHospBootVac(tt(1):end,:),2)),sum(CI95NewHospVac(1,tt(1):end)),sum(CI95NewHospVac(2,tt(1):end)),...
     sum(median(N*NewDeathsBootVac(tt(1):end,:),2)),sum(CI95NewDeathsVac(1,tt(1):end)),sum(CI95NewDeathsVac(2,tt(1):end)),...
@@ -85,27 +83,8 @@ xtickformat('dd-MMM')
 set(gcf,'Position',H)
 set(gca,'FontSize',16,'FontName','Arial')
 hold off
-saveas(gcf,['AccumDeathVacNYCB.fig']);
-print('-dpng',['AccumDeathVacNYCB']);
-
-
-figure
-hold on
-box on
-title('New York City')
-area(t_span(tt(3:end-2)),AA(3:end-2,3),'linestyle',':','FaceColor',[255,160,122]/255);
-area(t_span(tt(3:end-2)),AA(3:end-2,2),'linestyle',':','FaceColor',[1,1,1]);
-plot(t_span(tt(3:end-2)),AA(3:end-2,1),'-sr','LineWidth',2)
-ylabel('Number of Individuals')
-xlabel('Starting Date')
-xtickformat('dd-MMM')
-set(gcf,'Position',H)
-set(gca,'FontSize',16,'FontName','Arial')
-hold off
-saveas(gcf,['AccumDeathVac2NYCB.fig']);
-print('-dpng',['AccumDeathVac2NYCB']);
-
-% save dataVaccinationNYC_20201211b;
+saveas(gcf,'AccumDeathVacNYCB.fig');
+print('-dpng','AccumDeathVacNYCB');
 
 figure
 hold on
@@ -120,8 +99,8 @@ xtickformat('dd-MMM')
 set(gcf,'Position',H)
 set(gca,'FontSize',16,'FontName','Arial')
 hold off
-saveas(gcf,['NewDeathVacNYCB.fig']);
-print('-dpng',['NewDeathVacNYCB']);
+saveas(gcf,'NewDeathVacNYCB.fig');
+print('-dpng','NewDeathVacNYCB');
 
 
 disp(num2str([sum(data(tt(1)-1:end,1)),sum(data(tt(1)-1:end,3)),sum(data(tt(1)-1:end,4))]));
